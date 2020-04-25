@@ -21,6 +21,10 @@ app.use(bodyParser.urlencoded({ extended: true })); // import body Parser to par
 app.use(bodyParser.json()); // import bodyParser to be able to read-json
 app.use(cookieParser());    // import cookieParser
 
+app.get("/", (req,res) => {
+	res.json({ "hello": "I am happy to deploy our application" })
+})
+
 app.get("/api/user/auth", auth, (req,res) => {
 	res.status(200).json({
 		_id: req._id,
