@@ -7,11 +7,13 @@ mongoose.set('useCreateIndex', true);  // https://github.com/nodkz/mongoose-plug
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
+const config = require('./config/key')
+
 const { User } = require('./models/user');
 
 
 
-mongoose.connect('mongodb+srv://JohnWang:1234@react-blog-v8zvp.mongodb.net/test?retryWrites=true&w=majority', 
+mongoose.connect(config.mongoURI,  
 	{useNewUrlParser: true }).then(() => console.log('DB conncected'))   // 'useNewurlParser: true' removes deprecation warning that we get from mongoose
 							 .catch(err => console.error(err));
 
