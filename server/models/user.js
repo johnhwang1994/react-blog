@@ -75,7 +75,7 @@ userSchema.methods.generateToken = function(cb) {
 	})
 }
 
-userSchema.statics.findByToken = function (token, cb) {
+userSchema.statics.findByToken = function (token, cb) {  // statics is a mongoose function
 	var user = this;
 
 	jwt.verify(token, 'secret', function(err, decode){

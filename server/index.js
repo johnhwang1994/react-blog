@@ -7,11 +7,11 @@ mongoose.set('useCreateIndex', true);  // https://github.com/nodkz/mongoose-plug
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
-const config = require('./config/key'); 	// import our config key
+const config = require("./config/key"); 	// import our config key
 
-const { User } = require('./models/user'); // import our User schema/model
+const { User } = require("./models/user"); // import our User schema/model
 
-const { auth } = require('./middleware/auth'); 
+const { auth } = require("./middleware/auth"); 
 
 mongoose.connect(config.mongoURI,  
 	{useNewUrlParser: true }).then(() => console.log('DB conncected'))   // 'useNewurlParser: true' removes deprecation warning that we get from mongoose
@@ -77,10 +77,22 @@ app.post('/api/user/login', (req,res) => {
 
 	})
 
-
 })
 
+app.get('/api/user/logout', auth,(req,res) => {
+	User.findOneAndUpdate({ _id: req.user._id}, { token: ""}, (err, doc) => {
+		if(err) return res.json({ success: false, err })
+		return res.status(200).send({
+			success: true
+		})
+	})
+})
+
+// either use Heroku Port or our default port 5000
+const port = process.env.PORT || 5000
 
 
+app.listen(port, () => {
+	console.log(`Server Running at ${port}`)
+});
 
-app.listen(5000);
