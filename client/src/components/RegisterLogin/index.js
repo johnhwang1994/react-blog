@@ -1,6 +1,14 @@
 import React, { Component } from 'react'
 
 class RegisterLogin extends Component {
+
+	state = {
+		email: "",
+		password: "",
+		errors: []
+	}
+
+
 	render(){
 		return (
 			<div className="container">
@@ -12,8 +20,8 @@ class RegisterLogin extends Component {
 							<div>
 								<input 
 									name="email"
-									//value={this.state.email}
-									//onChange={e => this.handleChange(e)}
+									value={this.state.email}
+									onChange={e => this.handleChange(e)}
 									id="email"
 									type="email"
 									className="validate"
@@ -32,8 +40,8 @@ class RegisterLogin extends Component {
 							<div className="input-field col s12">
 								<input 
 									name="password"
-									//value={this.state.password}
-									//onChange={e => this.handleChange(e)}
+									value={this.state.password}
+									onChange={e => this.handleChange(e)}
 									id="password"
 									type="password"
 									className="validate"
