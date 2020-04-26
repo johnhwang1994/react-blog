@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require('express'); 
 const app = express();
 
 const mongoose = require('mongoose'); 
@@ -25,7 +25,9 @@ app.get("/", (req,res) => {
 	res.json({ "hello": "I am happy to deploy our application" })
 })
 
-// test again, wassup got it working
+
+console.log('hello');
+
 app.get("/api/user/auth", auth, (req,res) => {
 	res.status(200).json({
 		_id: req._id,
@@ -77,7 +79,7 @@ app.post('/api/user/login', (req,res) => {
 			   .status(200)
 			   .json({
 			   	  loginSuccess: true
-			   })
+			  })
 		})
 
 	})
